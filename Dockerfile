@@ -8,6 +8,8 @@ WORKDIR /app
 # Install app dependencies
 COPY --chown=default . .
 
+RUN chown -r default:root /app
+
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
