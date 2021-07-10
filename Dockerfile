@@ -1,10 +1,12 @@
 FROM python:3.6
 
+USER default
+
 # Create app directory
 WORKDIR /app
 
 # Install app dependencies
-COPY . .
+COPY --chown=default . .
 
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
