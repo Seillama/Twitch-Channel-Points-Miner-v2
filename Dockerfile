@@ -8,7 +8,10 @@ WORKDIR /app
 # Install app dependencies
 COPY --chown=default . .
 
-RUN chown -R default:root /app
+RUN mkdir /app/analytics && \
+    mkdir /app/cookies && \
+    mkdir /app/logs && \
+    chown -R default:root /app
 
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
