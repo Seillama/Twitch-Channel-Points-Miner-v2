@@ -1,19 +1,13 @@
 FROM python:3.6
 
-USER default
-
-# Create app directory
-WORKDIR /app
-
 # Install app dependencies
-COPY --chown=default . .
+COPY --chown=default . /app
 
-RUN mkdir /app/analytics && \
-    mkdir /app/cookies && \
-    mkdir /app/logs && \
-    chown -R default:default /app
+RUN pip install -r /app/requirements.txt --no-cache-dir
 
-RUN pip install --upgrade pip
-RUN pip install -r requirements.txt
+RUN chgrp -R 0 /app && \
+    chmod -R g=u /app
 
-CMD [ "python", "run.py" ]
+USER  1001
+
+CMD [ "python", "/app/run.py" ]
