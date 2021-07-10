@@ -11,7 +11,7 @@ COPY --chown=default . .
 RUN mkdir /app/analytics && \
     mkdir /app/cookies && \
     mkdir /app/logs && \
-    chown -R default:root /app
+    chown -R default:default /app
 
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
